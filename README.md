@@ -27,6 +27,12 @@ Schedule Trigger → RSS Read → HTTP Request (Groq AI) → Send Email
 | 3 | **HTTP Request** | Sends RSS data to Groq (LLaMA 3.1) for AI summarisation |
 | 4 | **Send an Email** | Delivers the formatted digest via SMTP to your inbox |
 
+### 🖼️ Workflow Canvas
+
+![Email Workflow](Email_Workflow.png)
+
+> The n8n canvas showing all 4 nodes wired in sequence. After a successful test execution, each node displays a green checkmark — **Schedule Trigger** passes 1 item → **RSS Read** fetches 20 items → **HTTP Request** calls the Groq API (POST to `https://api.groq.com/...`) → **Send an Email** delivers the digest. All nodes completed successfully.
+
 ---
 
 ## 🔧 Setup Instructions
@@ -121,9 +127,12 @@ Model used: `llama-3.1-8b-instant` | Temperature: `0.2` (for consistent, factual
 ## 🗂️ Project Files
 
 ```
-📁 ai-mentor-portfolio/
-├── Job_Notifications.json      ← n8n workflow (importable)
-└── README.md                   ← This file
+📁 n8n-Daily-News-Digest--JobNotification/
+├── Day4_Lab4B_Walkthrough.md       ← Lab material
+├── Job Notifications_result.json   ← Result file
+├── Email_Workflow.png              ← Workflow canvas screenshot
+├── Test Email Screenshot.png       ← Test email screenshot
+└── README.md                       ← This file
 ```
 
 ---
@@ -138,6 +147,8 @@ Model used: `llama-3.1-8b-instant` | Temperature: `0.2` (for consistent, factual
 - [x] Workflow set to **Active**
 - [x] Test run executed — email received in inbox
 - [x] Workflow JSON exported and committed to repo
+- [x] Workflow canvas screenshot added (`Email_Workflow.png`)
+- [x] Test email screenshot added (`Test Email Screenshot.png`)
 
 ---
 
@@ -147,7 +158,7 @@ Model used: `llama-3.1-8b-instant` | Temperature: `0.2` (for consistent, factual
 |-------|-----|
 | `401 Unauthorized` from Groq | Re-paste your API key. Ensure `Bearer ` prefix is present with a space |
 | RSS node returns empty | Feed URL may be temporarily down — substitute `https://news.ycombinator.com/rss` |
-| Email not received | Check App Password is correct; ensure "Less secure app access" or App Password is enabled |
+| Email not received | Check App Password is correct; ensure App Password is enabled in Google account |
 | n8n UI not loading | Run `docker logs <container_id>` — check for port conflict, try port `15678` |
 | Docker not starting | Open Docker Desktop and wait for the whale icon to stop animating |
 
